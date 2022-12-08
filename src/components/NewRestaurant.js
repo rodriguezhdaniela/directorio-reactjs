@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import { createRestaurant } from '../directoryService'
+import Swal from 'sweetalert2';
 
 function NewRestaurant() {
     const [restaurant, setRestaurant] = useState({});
@@ -8,15 +9,29 @@ function NewRestaurant() {
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setRestaurant(values => ({...values, [name]: value}))
+        setRestaurant(values => ({...values, [name]: value}));
     }
-    
+
     const handleOnSubmit = (e) => {
         e.preventDefault();
        
         try{
-            createRestaurant(restaurant)
-            setRestaurant([])
+            if(restaurant.name === undefined || 
+                restaurant.address === undefined ||
+                restaurant.description === undefined ||
+                restaurant.url === undefined
+            ){
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Todos los campos deben ser completados',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+            }else {
+                createRestaurant(restaurant)
+                setRestaurant([])
+            }
+            
         } catch(e){
             console.log(e)
         }
