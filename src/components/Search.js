@@ -15,7 +15,7 @@ function Search() {
         e.preventDefault();
 
         const restaurantList = restaurants.filter((el) =>
-            el.name.toLowerCase().indexOf(input.toLowerCase()) > -1
+            el.name.toLowerCase().includes(input.toLowerCase())
         );
         setRestaurants(restaurantList)
         setInput([])
@@ -50,7 +50,7 @@ function Search() {
                     <Card className="mb-4 box-shadow">
                         <Card.Img 
                             className="card-img-top"
-                            src={item.image}
+                            src={item.url}
                             alt="foto restaurante 1"
                             style={{ height: '225px'}}
                         />
