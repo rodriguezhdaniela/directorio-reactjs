@@ -27,7 +27,7 @@ function Lists() {
                     <Card className="mb-4 box-shadow">
                         <Card.Img 
                             className="card-img-top"
-                            src={item.image}
+                            src={item.url}
                             alt="foto restaurante"
                             style={{ height: '225px'}}
                         />
